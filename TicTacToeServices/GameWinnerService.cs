@@ -17,15 +17,13 @@ namespace TicTacToeServices
         {
             var currentWinningSymbol = ' ';
             currentWinningSymbol = ChecksForThreeInARowHorizontalRow(gameboard);
+            if (currentWinningSymbol != ' ')
+                return currentWinningSymbol;
+            currentWinningSymbol = ChecksForThreeInARowInVerticalColumn(gameboard);
 
-            var rowOneChar = gameboard[0, 0];
-            var rowTwoChar = gameboard[1, 0];
-            var rowThreeChar = gameboard[2, 0];
-            if (rowOneChar == rowTwoChar && rowTwoChar == rowThreeChar)
-            {
-                currentWinningSymbol =  rowOneChar;
-            }
             return currentWinningSymbol;
+
+
         }
 
         private static char ChecksForThreeInARowHorizontalRow(char[,] gameboard)
@@ -36,6 +34,18 @@ namespace TicTacToeServices
             if (columnOneChar == columnTwoChar && columnTwoChar == columnThreeChar)
             {
                 return columnOneChar;
+            }
+            return ' ';
+        }
+
+        private static char ChecksForThreeInARowInVerticalColumn(char[,] gameboard)
+        {
+            var rowOneChar = gameboard[0, 0];
+            var rowTwoChar = gameboard[1, 0];
+            var rowThreeChar = gameboard[2, 0];
+            if (rowOneChar == rowTwoChar && rowTwoChar == rowThreeChar)
+            {
+                return rowOneChar;
             }
             return ' ';
         }
