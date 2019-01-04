@@ -16,7 +16,7 @@ namespace TicTacToeServices
         public char Validate(char[,] gameboard)
         {
             var currentWinningSymbol = ' ';
-            currentWinningSymbol = checksForThreeInARowHorizontalRow(gameboard);
+            currentWinningSymbol = ChecksForThreeInARowHorizontalRow(gameboard);
 
             var rowOneChar = gameboard[0, 0];
             var rowTwoChar = gameboard[1, 0];
@@ -28,7 +28,7 @@ namespace TicTacToeServices
             return currentWinningSymbol;
         }
 
-        private static char checksForThreeInARowHorizontalRow(char[,] gameboard)
+        private static char ChecksForThreeInARowHorizontalRow(char[,] gameboard)
         {
             var columnOneChar = gameboard[0, 0];
             var columnTwoChar = gameboard[0, 1];
