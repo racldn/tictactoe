@@ -11,18 +11,24 @@ namespace TicTacToeServices
         char Validate(char[,] gameboard);
     }
 
+    
+
     public class GameWinnerService : IGameWinnerService
     {
+
+        private const char SymbolForNoWinner = ' ';
+
         public char Validate(char[,] gameboard)
         {
-            var currentWinningSymbol = ' ';
+            var currentWinningSymbol = ChecksForThreeInARowHorizontalRow(gameboard);
             currentWinningSymbol = ChecksForThreeInARowHorizontalRow(gameboard);
-            if (currentWinningSymbol != ' ')
+            if (currentWinningSymbol != SymbolForNoWinner)
                 return currentWinningSymbol;
             currentWinningSymbol = ChecksForThreeInARowInVerticalColumn(gameboard);
-
+            if(currentWinningSymbol != SymbolForNoWinner)
             return currentWinningSymbol;
-
+            currentWinningSymbol = ChecksForThreeInARowDiagonally(gameboard);
+            return currentWinningSymbol;
 
         }
 
@@ -35,7 +41,7 @@ namespace TicTacToeServices
             {
                 return columnOneChar;
             }
-            return ' ';
+            return SymbolForNoWinner;
         }
 
         private static char ChecksForThreeInARowInVerticalColumn(char[,] gameboard)
@@ -47,7 +53,19 @@ namespace TicTacToeServices
             {
                 return rowOneChar;
             }
-            return ' ';
+            return SymbolForNoWinner;
+        }
+
+        private static char ChecksForThreeInARowDiagonally(char[,] gameboard)
+        {
+            var cellOneChar = gameboard[0, 0];
+            var cellTwoChar = gameboard[1, 1];
+            var cellThreeChar = gameboard[2, 2];
+            if (cellOneChar == cellTwoChar && cellTwoChar == cellThreeChar)
+            {
+                return cellOneChar;
+            }
+            return SymbolForNoWinner;
         }
     }
    
